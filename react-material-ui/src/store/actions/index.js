@@ -1,24 +1,24 @@
-import axios from 'axios'
-
+import root from './axiosConfig'
+import * as types from './../constants/action-types'
 export function getData() {
   return function (dispatch) {
-    return axios.get("http://demo4452328.mockable.io/properties")
+    return root.get("/properties")
       .then(res => {
         dispatch({
-          type: "DATA_LOADED",
+          type: types['DATA_LOADED'],
           payload: res.data.data
         });
       });
   };
 }
 
+
 export function getTemplates() {
   return function (dispatch) {
-    console.log('opa')
-    return axios.get("http://demo4452328.mockable.io/templates")
+    return root.get("/templates")
       .then(res => {
         dispatch({
-          type: "TEMPLATE_LOADED",
+          type: types["TEMPLATE_LOADED"],
           payload: res.data
         });
       });
@@ -26,9 +26,8 @@ export function getTemplates() {
 }
 
 export function setTemplateType(payload) {
-  console.log('1 ', payload)
   return ({
-    type: "SET_TMPL_TYPE",
+    type: types["SET_TMPL_TYPE"],
     payload: payload
   });
 }

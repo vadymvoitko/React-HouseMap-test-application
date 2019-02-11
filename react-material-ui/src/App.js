@@ -1,5 +1,5 @@
 import React from 'react'
-import Drawer from './components/Drawer.jsx'
+import Drawer from './components/Drawer'
 import { BrowserRouter as Router } from "react-router-dom";
 
 const App = () => {

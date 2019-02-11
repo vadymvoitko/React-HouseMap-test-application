@@ -11,7 +11,6 @@ const components = {
 };
 
 export const ImageElement = (props) => {
-  console.log(props.child)
   return (
     <div>
       <CardMedia
@@ -26,7 +25,16 @@ export const ImageElement = (props) => {
             <Type
               key={item.component || index}
               item={props.item}
-              Style={{position: 'absolute'}}
+              styles={{
+                position: 'absolute',
+                transform: 'translate(-15px, -55px)',
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: 'x-large',
+                backgroundColor: '#020224c7',
+                borderRadius: '10%',
+                padding: '0 6px'
+              }}
               field={item.field}
             />
           )

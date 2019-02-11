@@ -5,7 +5,12 @@ import {
 export const PriceElement = props => {
   return (
     <CardContent>
-      <Typography component="h2">$ {props.item[props.field]}</Typography>
+      <Typography
+        component="h2"
+        style={{ ...(props.styles || {}) }}
+      >
+        $ {props.item[props.field]}
+      </Typography>
     </CardContent>
   )
 }

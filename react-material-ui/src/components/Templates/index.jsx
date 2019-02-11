@@ -12,6 +12,9 @@ const styles = {
   fullList: {
     width: 'auto',
   },
+  root: {
+    backgroundColor: 'mintcream'
+  }
 };  
 
 class TemplateDrawer extends React.Component {
@@ -20,7 +23,6 @@ class TemplateDrawer extends React.Component {
   };
 
   toggleDrawer = (side, open) => () => {
-    console.log(side, open)
     this.setState({
       [side]: open,
     });
@@ -30,16 +32,23 @@ class TemplateDrawer extends React.Component {
     return (
       <div>
         <StyledButton toggleDrawer={this.toggleDrawer}/>
-        <Drawer anchor="top" open={this.state.top} onClose={this.toggleDrawer('top', false)}>
+        <Drawer 
+          anchor="top"
+          classes={{
+            root: this.props.classes.root,
+          }}
+          open={this.state.top} 
+          onClose={this.toggleDrawer('top', false)}
+        >
           <div
             tabIndex={0}
             role="button"
             style={{
-              height: '220px',
+              minHeight: '600px',
               overflow: 'hidden',
             }}
           >
-            <ContentTemplates/>
+            <ContentTemplates toggleDrawer={this.toggleDrawer}/>
           </div>
         </Drawer>
       </div>

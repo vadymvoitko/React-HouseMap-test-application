@@ -31,8 +31,8 @@ function StyledButton(props) {
     <Button
       onClick={props.toggleDrawer('top', true)}
       classes={{
-        root: classes.root, // class name, e.g. `classes-nesting-root-x`
-        label: classes.label, // class name, e.g. `classes-nesting-label-x`
+        root: classes.root,
+        label: classes.label,
       }}
     >
       change card template

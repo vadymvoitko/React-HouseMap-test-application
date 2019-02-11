@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getData } from "./../../js/actions";
+import { getData } from "./../../store/actions";
 import HouseCard from './HouseCard'
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     items: state.items,
-    currentTemplate: state.currentTemplate
+    currentTemplate: state.currentTemplate.template
   }
 }
 class HouseMap extends React.Component {
@@ -34,7 +34,7 @@ class HouseMap extends React.Component {
           {(
             this.props.items.map(itm => {
               return (
-                <Grid key={itm.id || itm} item xs={3}>
+                <Grid key={itm.id || itm} item xs={6} md={4} lg={3}>
                   <HouseCard item={itm} currentTemplate={this.props.currentTemplate} />
                 </Grid>
               )

@@ -10,7 +10,7 @@ const components = {
   AREA: AreaElement,
 };
 
-export const ImageElement = (props) => {
+export const ImageElement = props => {
   return (
     <div>
       <CardMedia

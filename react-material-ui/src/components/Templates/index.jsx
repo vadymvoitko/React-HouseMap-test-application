@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import StyledButton from './StyledButton'
 import ContentTemplates from './ContentTemplates'
+import withWidth from '@material-ui/core/withWidth';
 
 const styles = {
   list: {
@@ -14,6 +15,13 @@ const styles = {
   },
   root: {
     backgroundColor: 'mintcream'
+  },
+  towel: {
+    minHeight: '650px',
+    overflow: 'hidden',
+  },
+  xsTowel: {
+    padding: '5px'
   }
 };  
 
@@ -27,7 +35,6 @@ class TemplateDrawer extends React.Component {
       [side]: open,
     });
   };
-
   render() {
     return (
       <div>
@@ -43,10 +50,7 @@ class TemplateDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            style={{
-              minHeight: '600px',
-              overflow: 'hidden',
-            }}
+            className={this.props.classes[this.props.width === 'xs' ? 'xsTowel' : 'towel']}
           >
             <ContentTemplates toggleDrawer={this.toggleDrawer}/>
           </div>
@@ -60,4 +64,4 @@ TemplateDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TemplateDrawer);
+export default withStyles(styles)(withWidth()(TemplateDrawer));

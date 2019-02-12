@@ -7,7 +7,7 @@ export const PriceElement = props => {
     <CardContent>
       <Typography
         component="h2"
-        style={{ ...(props.styles || {}) }}
+        style={{ ...(props.styles || {})}}
       >
         $ {props.item[props.field]}
       </Typography>

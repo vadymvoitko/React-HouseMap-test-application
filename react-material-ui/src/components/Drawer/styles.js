@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: 20,
+    marginRight: 10,
   },
   hide: {
     display: 'none',

@@ -4,7 +4,7 @@ const Tree = ({ arr }) => {
   const render = (
     <ul>
       {
-        arr.map(item => {
+        Array.isArray(arr) && arr.map(item => {
           return (
             <li key={item.id || item.component || item}>
               <Typography component="p">
@@ -12,7 +12,7 @@ const Tree = ({ arr }) => {
               </Typography>
               {
                 item.children ?
-                  <Tree arr={item.children || item} /> :
+                  <Tree arr={item.children || item}/> :
                   null
               }
             </li>

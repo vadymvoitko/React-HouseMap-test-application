@@ -12,11 +12,10 @@ const styles = {
     height: 48,
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    margin: '10px',
-    right: '0',
-    top: '0',
+    right: '5px',
+    top: '5px',
     zIndex: '1100',
-    position: 'absolute',
+    position: 'fixed',
   },
   label: {
     textTransform: 'capitalize',
@@ -35,7 +34,7 @@ function StyledButton(props) {
         label: classes.label,
       }}
     >
-      change card template
+      card template
     </Button>
   );
 }

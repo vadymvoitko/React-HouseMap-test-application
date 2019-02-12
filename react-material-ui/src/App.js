@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Drawer from './components/Drawer'
 import { BrowserRouter as Router } from "react-router-dom";
-
-const App = () => {
-  return ( 
-    <Router>
-      <div>
-        <Drawer/>
-      </div>
-    </Router>
-  )
+import { connect } from "react-redux";
+import { getHouses } from "./store/actions";
+function mapDispatchToProps(dispatch) {
+  return {
+    getHouses: _ => dispatch(getHouses())
+  };
 }
-export default App;
+class App extends Component {
+  componentDidMount() {
+    this.props.getHouses()
+  }
+  render() {
+    return (
+    <Router>
+      <Drawer/>
+    </Router>
+    )
+  }
+}
+export default connect(null, mapDispatchToProps)(App);

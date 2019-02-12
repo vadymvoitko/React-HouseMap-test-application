@@ -1,6 +1,6 @@
 import root from './axiosConfig'
 import * as types from './../constants/action-types'
-export function getData() {
+export function getHouses() {
   return function (dispatch) {
     return root.get("/properties")
       .then(res => {

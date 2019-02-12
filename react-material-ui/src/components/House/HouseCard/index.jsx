@@ -9,7 +9,8 @@ import {
 
 const styles = {
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    margin: 'auto'
   },
   media: {
     height: 140

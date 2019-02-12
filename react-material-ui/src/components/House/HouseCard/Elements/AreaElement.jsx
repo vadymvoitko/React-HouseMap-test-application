@@ -3,6 +3,7 @@ import {
   CardContent, Typography
 } from "@material-ui/core";
 export const AreaElement = props => {
+  const { item, field } = props
   return (
     <CardContent>
       <Typography 
@@ -10,7 +11,7 @@ export const AreaElement = props => {
         variant="h5" 
         component="h2"
       >
-        {props.item[props.field]}
+        {item[field]}
       </Typography>
     </CardContent>
   )

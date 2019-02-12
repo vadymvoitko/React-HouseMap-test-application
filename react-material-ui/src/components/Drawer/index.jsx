@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,15 +10,15 @@ import HouseMap from './../House'
 import TemplateDrawer from './../Templates'
 import styles from './styles'
 
-class PersistentDrawerLeft extends React.Component {
+class PersistentDrawerLeft extends Component {
   state = {
     open: false,
   };
   handleDrawerOpen = () => {
-    this.setState({ open: true });
+    this.setState(() => ({ open: true }));
   };
   handleDrawerClose = () => {
-    this.setState({ open: false });
+    this.setState(() => ({ open: false }));
   };
 
   render() {

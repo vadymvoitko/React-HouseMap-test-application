@@ -23,12 +23,11 @@ const styles = {
   },
 };
 
-function StyledButton(props) {
-  const { classes } = props;
-
+const StyledButton = props => {
+  const { classes, toggleDrawer } = props;
   return (
     <Button
-      onClick={props.toggleDrawer('top', true)}
+      onClick={toggleDrawer('top', true)}
       classes={{
         root: classes.root,
         label: classes.label,

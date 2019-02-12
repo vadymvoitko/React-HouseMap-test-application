@@ -26,16 +26,17 @@ const components = {
 
 class HouseCard extends Component {
   render() {
+    const { classes, currentTemplate } = this.props
     return (
-      <Card className={this.props.classes.card}>
+      <Card className={classes.card}>
         <CardActionArea>
           {
-            this.props.currentTemplate.map((item, index) => {
+            currentTemplate.map((item, index) => {
               const Type = components[item.component]
               return (
                 <Type
                   key={item.component || index}
-                  classes={this.props.classes} 
+                  classes={classes} 
                   item={this.props.item}
                   child={item.children}
                   field={item.field}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -25,24 +25,25 @@ const styles = {
   }
 };  
 
-class TemplateDrawer extends React.Component {
+class TemplateDrawer extends Component {
   state = {
     top: false,
   };
 
   toggleDrawer = (side, open) => () => {
-    this.setState({
+    this.setState(() => ({
       [side]: open,
-    });
+    }));
   };
   render() {
+    const {classes} = this.props
     return (
       <div>
         <StyledButton toggleDrawer={this.toggleDrawer}/>
         <Drawer 
           anchor="top"
           classes={{
-            root: this.props.classes.root,
+            root: classes.root,
           }}
           open={this.state.top} 
           onClose={this.toggleDrawer('top', false)}
@@ -50,7 +51,7 @@ class TemplateDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            className={this.props.classes[this.props.width === 'xs' ? 'xsTowel' : 'towel']}
+            className={classes[this.props.width === 'xs' ? 'xsTowel' : 'towel']}
           >
             <ContentTemplates toggleDrawer={this.toggleDrawer}/>
           </div>

@@ -1,19 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import HouseCard from "./HouseCard";
 import Grid from "@material-ui/core/Grid";
 
-function mapStateToProps(state) {
-  return {
+const mapStateToProps = state => ({
     items: state.items,
     currentTemplate: state.currentTemplate.template
-  };
-}
-class HouseMap extends React.Component {
+  })
+class HouseMap extends Component {
   state = {
     open: true
   }
   render() {
+    const { currentTemplate } = this.props
     return (
       <div>
         <Grid 
@@ -25,7 +24,7 @@ class HouseMap extends React.Component {
               <Grid key={itm.id || itm} item xs={12} md={6} lg={4}>
                 <HouseCard
                   item={itm}
-                  currentTemplate={this.props.currentTemplate}
+                  currentTemplate={currentTemplate}
                 />
               </Grid>
             );

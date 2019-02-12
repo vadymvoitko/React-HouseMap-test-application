@@ -3,13 +3,14 @@ import {
   CardContent, Typography
 } from "@material-ui/core";
 export const PriceElement = props => {
+  const { item, field, styles } = props
   return (
     <CardContent>
       <Typography
         component="h2"
-        style={{ ...(props.styles || {})}}
+        style={{ ...(styles || {})}}
       >
-        $ {props.item[props.field]}
+        $ {item[field]}
       </Typography>
     </CardContent>
   )

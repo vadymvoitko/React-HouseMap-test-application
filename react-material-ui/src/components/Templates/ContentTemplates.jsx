@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from "react-redux";
 import { getTemplates, setTemplateType } from "../../store/actions";
 import { Grid, Paper, Button } from '@material-ui/core';
@@ -23,23 +23,19 @@ const styles = {
   }
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
+const mapDispatchToProps = dispatch => ({
     getTemplates: _ => dispatch(getTemplates()),
     setTemplateType: tmpl => dispatch(setTemplateType(tmpl))
-  };
-}
+  })
 
-function mapStateToProps(state) {
-  return {
+const mapStateToProps = state => ({
     templates: state.templates,
     items: state.items,
     currentTemplate: state.currentTemplate.template,
     currentTemplateIndex: state.currentTemplate.index
-  }
-}
+  })
 
-class Templates extends React.Component {
+class Templates extends Component {
   state = {
     open: true
   }
@@ -47,16 +43,13 @@ class Templates extends React.Component {
     this.props.getTemplates()
   }
   selectTemplate(template, index) {
-    this.setState({
-      activeCardIndex: index
-    })
     this.props.setTemplateType({template, index});
   }
   get getActiveCardIndex() {
     return this.props.currentTemplateIndex
   }
   render() {
-    const { classes } = this.props;
+    const { classes, items, currentTemplate, toggleDrawer, width} = this.props
     return (
       <Grid 
         container 
@@ -74,7 +67,7 @@ class Templates extends React.Component {
                   <Paper 
                     style={{ backgroundColor: [this.getActiveCardIndex === index ? '#ebebeb' : 'unset'] }} 
                     onClick={() => this.selectTemplate(itm.template, index)}
-                    className={this.props.width === 'xs' ? classes.cardTmpl : ''} 
+                    className={width === 'xs' ? classes.cardTmpl : ''} 
                   >
                   <Tree arr={itm.template}/>
                   </Paper>
@@ -88,8 +81,8 @@ class Templates extends React.Component {
           justify="center"
         >
           <HouseCard 
-            item={this.props.items[0]}
-            currentTemplate={this.props.currentTemplate}
+            item={items[0]}
+            currentTemplate={currentTemplate}
           />
         </Grid>
         <Grid 
@@ -101,7 +94,7 @@ class Templates extends React.Component {
             variant="contained" 
             color="primary"
             className={classes.btnShift}
-            onClick={this.props.toggleDrawer('top', false)}
+            onClick={toggleDrawer('top', false)}
           >
             Ok
           </Button>

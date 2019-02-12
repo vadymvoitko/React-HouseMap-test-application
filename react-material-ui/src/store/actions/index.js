@@ -1,33 +1,28 @@
 import root from './axiosConfig'
-import * as types from './../constants/action-types'
-export function getHouses() {
-  return function (dispatch) {
-    return root.get("/properties")
+import {DATA_LOADED, SET_TMPL_TYPE, TEMPLATE_LOADED} from './../constants/action-types'
+export const getHouses = () => dispatch => (
+    root.get("/properties")
       .then(res => {
         dispatch({
-          type: types['DATA_LOADED'],
+          type: DATA_LOADED,
           payload: res.data.data
         });
-      });
-  };
-}
+      })
+);
 
 
-export function getTemplates() {
-  return function (dispatch) {
-    return root.get("/templates")
+
+export const getTemplates = () => dispatch => (
+    root.get("/templates")
       .then(res => {
         dispatch({
-          type: types["TEMPLATE_LOADED"],
+          type: TEMPLATE_LOADED,
           payload: res.data
         });
-      });
-  };
-}
+      })
+);
 
-export function setTemplateType(payload) {
-  return ({
-    type: types["SET_TMPL_TYPE"],
+export const setTemplateType = payload => ({
+    type: SET_TMPL_TYPE,
     payload: payload
   });
-}

@@ -11,15 +11,16 @@ const components = {
 };
 
 export const ImageElement = props => {
+  const { child, field, item, classes } = props
   return (
     <div>
       <CardMedia
-        className={props.classes.media}
-        image={props.item[props.field] && props.item[props.field][0]}
+        className={classes.media}
+        image={item[field] && item[field][0]}
         title="Contemplative Reptile"
       />
       {
-        props.child ? props.child.map((item, index) => {
+        child ? child.map((item, index) => {
           const Type = components[item.component];
           return (
             <Type

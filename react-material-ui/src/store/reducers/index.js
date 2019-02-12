@@ -23,7 +23,7 @@ const initialState = {
   }
 };
 
-function rootReducer(state = initialState, action) {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'DATA_LOADED':
       return {

@@ -4,8 +4,9 @@ import { getTemplates, setTemplateType } from "../../store/actions";
 import { Grid, Paper, Button } from '@material-ui/core';
 import Tree from './Tree'
 import HouseCard from './../House/HouseCard'
-import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
+import injectSheet from 'react-jss'
+import { HighlightClick } from './HighlightClick'
 
 const styles = {
   btnShift: {
@@ -20,6 +21,11 @@ const styles = {
   },
   tree: {
     listStyleType: 'none'
+  },
+  overlay: {
+    '& :first-child': {
+      backgroundColor: 'unset !important',
+    }
   }
 };
 
@@ -59,18 +65,24 @@ class Templates extends Component {
         <h2 className={classes.headTmpl}>Select the template for houseCards representation</h2>
         {(
           this.props.templates.map((itm, index) => {
+            const PaperItem = () => (<Paper
+              onClick={() => this.selectTemplate(itm.template, index)}
+              className={width === 'xs' ? classes.cardTmpl : ''}
+            >
+              <Tree arr={itm.template} />
+            </Paper>)
+            const propsItem = {
+              condition: this.getActiveCardIndex === index,
+              classes
+            }
             return (
                 <Grid
                   key={itm.id || itm} 
                   item xs={4}
                 >
-                  <Paper 
-                    style={{ backgroundColor: [this.getActiveCardIndex === index ? '#ebebeb' : 'unset'] }} 
-                    onClick={() => this.selectTemplate(itm.template, index)}
-                    className={width === 'xs' ? classes.cardTmpl : ''} 
-                  >
-                  <Tree arr={itm.template}/>
-                  </Paper>
+                  {
+                    HighlightClick( PaperItem, propsItem )
+                  }
                 </Grid>
             )
           })
@@ -103,6 +115,6 @@ class Templates extends Component {
     );
   }
 }
-const StyledTemplate = withStyles(styles)(withWidth()(Templates))
+const StyledTemplate = injectSheet(styles)(withWidth()(Templates))
 const TemplatesConnect = connect(mapStateToProps, mapDispatchToProps)(StyledTemplate);
 export default TemplatesConnect;

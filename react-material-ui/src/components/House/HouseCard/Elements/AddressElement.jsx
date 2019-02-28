@@ -7,7 +7,7 @@ export const AddressElement = props => {
   const { item, field } = props
   return (
     <CardContent>
-      <Typography 
+      <Typography
         gutterBottom 
         variant="h5" 
         component="h2"

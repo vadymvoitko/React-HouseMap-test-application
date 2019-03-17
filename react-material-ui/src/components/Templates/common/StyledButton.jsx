@@ -24,16 +24,16 @@ const styles = {
 };
 
 const StyledButton = props => {
-  const { classes, toggleDrawer } = props;
+  const { classes } = props;
   return (
     <Button
-      onClick={toggleDrawer('top', true)}
       classes={{
         root: classes.root,
         label: classes.label,
       }}
+      onClick={props.handleClick}
     >
-      card template
+      {props.btnText}
     </Button>
   );
 }

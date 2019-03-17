@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">1</div>
+  <div id="app2">1</div>
+  <input id="app3" type="text"/>
+  <button onclick="increase()">click^</button>
+  <button onclick="decrease()">clickv</button>
+  <script>
+    const data = {
+      a: 1
+    }
+    const diff = (obj, val) => {
+        app.innerHTML = val;
+        app2.innerHTML = val;
+    }
+    init();
+    var increase = () => {
+      data.a++
+    }
+    var decrease = () => {
+      data.a--
+    }
+    function init() {
+      data.$_a = data.a;
+      Object.defineProperty(data, 'a', {
+        get() {
+          return data.$_a
+        },
+        set(val) {
+          data.$_a = val;
+          diff(this, val)
+        }
+      })
+    }
+    // let a = {
+    //   value: 1,
+    //   get ga() {
+    //     return this.value
+    //   },
+    //   set ga(val) {
+    //     this.value = val;
+    //     diff(this, val) 
+    //   }
+    // }
+    // const diff = (obj, val) => {
+    //     app.innerHTML = val;
+    //     app2.innerHTML = val;
+    // }
+    // let increase = function () {
+    //   a.ga++
+    // }
+    // let decrease = function () {
+    //   a.ga--
+    // }
+  </script>
+</body>
+</html>

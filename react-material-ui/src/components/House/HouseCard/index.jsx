@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { AddressElement, ImageElement, PriceElement, AreaElement } from './Elements'
-import {
-  Card,
-  CardActionArea,
-} from "@material-ui/core";
+import { Card, CardActionArea } from "@material-ui/core";
 
 const styles = {
   card: {
@@ -25,33 +22,31 @@ const components = {
 };
 
 class HouseCard extends Component {
-  render() {
-    const { classes, currentTemplate } = this.props
+  static propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+  mapAttributes = (item, index) => {
+    const Type = components[item.component]
     return (
-      <Card className={classes.card}>
+      <Type
+        key={item.component || index}
+        classes={this.props.classes}
+        item={this.props.item}
+        child={item.children}
+        field={item.field}
+      />
+    )
+  }
+  render() {
+    return (
+      <Card className={this.props.classes.card}>
         <CardActionArea>
           {
-            currentTemplate.map((item, index) => {
-              const Type = components[item.component]
-              return (
-                <Type
-                  key={item.component || index}
-                  classes={classes} 
-                  item={this.props.item}
-                  child={item.children}
-                  field={item.field}
-                />
-              )
-            })
+            this.props.currentTemplate.map(this.mapAttributes)
           }
         </CardActionArea>
       </Card>
     );
   }
 }
-
-HouseCard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
 export default withStyles(styles)(HouseCard);

@@ -11,24 +11,25 @@ class HouseMap extends Component {
   state = {
     open: true
   }
+  mapHouseCards = item => {
+      return (
+        <Grid key={item.id || item} item xs={12} md={6} lg={4}>
+          <HouseCard
+            item={item}
+            currentTemplate={this.props.currentTemplate}
+          />
+        </Grid>
+      )
+    }
+  
   render() {
-    const { currentTemplate } = this.props
     return (
       <div>
         <Grid 
           container
           spacing={24}
         >
-          {this.props.items.map(itm => {
-            return (
-              <Grid key={itm.id || itm} item xs={12} md={6} lg={4}>
-                <HouseCard
-                  item={itm}
-                  currentTemplate={currentTemplate}
-                />
-              </Grid>
-            );
-          })}
+          {this.props.items.map(this.mapHouseCards)}
         </Grid>
       </div>
     );

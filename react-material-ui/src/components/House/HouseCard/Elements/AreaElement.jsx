@@ -2,17 +2,14 @@ import React from 'react'
 import {
   CardContent, Typography
 } from "@material-ui/core";
-export const AreaElement = props => {
-  const { item, field } = props
-  return (
+export const AreaElement = props => (
     <CardContent>
       <Typography 
         gutterBottom 
         variant="h5" 
         component="h2"
       >
-        {item[field]}
+        {props.item[props.field]}
       </Typography>
     </CardContent>
   )
-}

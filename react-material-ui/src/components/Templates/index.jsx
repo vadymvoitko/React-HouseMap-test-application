@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import StyledButton from './StyledButton'
+import StyledButton from './common/StyledButton'
 import ContentTemplates from './ContentTemplates'
 import withWidth from '@material-ui/core/withWidth';
 
@@ -29,24 +29,29 @@ class TemplateDrawer extends Component {
   state = {
     top: false,
   };
-
-  toggleDrawer = (side, open) => () => {
-    this.setState(() => ({
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  toggleDrawer = (side = 'top', open = true) => {
+    console.log(side, open)
+    this.setState({
       [side]: open,
-    }));
+    });
   };
   render() {
     const {classes} = this.props
     return (
-      <div>
-        <StyledButton toggleDrawer={this.toggleDrawer}/>
-        <Drawer 
+      <>
+        <StyledButton 
+          btnText={'card template'}
+          handleClick={() => this.toggleDrawer('top', true)}
+        />
+        <Drawer
           anchor="top"
           classes={{
             root: classes.root,
           }}
-          open={this.state.top} 
-          onClose={this.toggleDrawer('top', false)}
+          open={this.state.top}
         >
           <div
             tabIndex={0}
@@ -56,13 +61,9 @@ class TemplateDrawer extends Component {
             <ContentTemplates toggleDrawer={this.toggleDrawer}/>
           </div>
         </Drawer>
-      </div>
+      </>
     );
   }
 }
-
-TemplateDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(withWidth()(TemplateDrawer));
+const TemplateDrawerWidth = withWidth()(TemplateDrawer);
+export default withStyles(styles)(TemplateDrawerWidth);

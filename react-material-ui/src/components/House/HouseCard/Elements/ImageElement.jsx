@@ -10,6 +10,27 @@ const components = {
   AREA: AreaElement,
 };
 
+const mapElements = props => (item, index) => {
+  const Type = components[item.component];
+  return (
+    <Type
+      key={item.component || index}
+      item={props.item}
+      styles={{
+        position: 'absolute',
+        transform: 'translate(-15px, -55px)',
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 'x-large',
+        backgroundColor: '#020224c7',
+        borderRadius: '10%',
+        padding: '0 6px'
+      }}
+      field={item.field}
+    />
+  )
+}
+
 export const ImageElement = props => {
   const { child, field, item, classes } = props
   return (
@@ -20,26 +41,7 @@ export const ImageElement = props => {
         title="Contemplative Reptile"
       />
       {
-        child ? child.map((item, index) => {
-          const Type = components[item.component];
-          return (
-            <Type
-              key={item.component || index}
-              item={props.item}
-              styles={{
-                position: 'absolute',
-                transform: 'translate(-15px, -55px)',
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: 'x-large',
-                backgroundColor: '#020224c7',
-                borderRadius: '10%',
-                padding: '0 6px'
-              }}
-              field={item.field}
-            />
-          )
-        }) : null
+        child ? child.map(mapElements(props)) : null
       }
     </div>
   )
